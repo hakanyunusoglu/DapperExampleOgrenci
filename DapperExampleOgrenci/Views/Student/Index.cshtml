@@ -1,0 +1,92 @@
+﻿@model DapperExampleOgrenci.Models.DataVM.StudentVM
+
+@{
+    ViewData["Title"] = "Öğrenci Listesi";
+}
+
+<h1>Öğrenci Listesi</h1>
+
+<div class="card col-6">
+    <div class="card-body">
+        <form asp-controller="Student" asp-action="Index">
+            <div class="form-group col-6">
+                <label asp-for="Students.Name" class="control-label"></label>
+                <select class="form-control" asp-for="Students.Name" asp-items="@(new SelectList(Model.sList,"Name","Name"))">
+                    <option value="0">--- İsim Seçiniz ---</option>
+                </select>
+                <span asp-validation-for="Students.Name" class="text-danger"></span>
+            </div>
+             <div class="form-group col-6">
+                <label asp-for="Students.Surname" class="control-label"></label>
+                <select class="form-control" asp-for="Students.Surname" asp-items="@(new SelectList(Model.sList,"Name","Surname"))">
+                    <option value="0">--- Soyisim Seçiniz ---</option>
+                </select>
+                <span asp-validation-for="Students.Surname" class="text-danger"></span>
+            </div>
+            <div class="form-group col-6">
+                <label asp-for="Students.Email" class="control-label"></label>
+                <select class="form-control" asp-for="Students.Email" asp-items="@(new SelectList(Model.sList,"Name","Email"))">
+                    <option value="0">--- Email Seçiniz ---</option>
+                </select>
+                <span asp-validation-for="Students.Surname" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+             @*   <input class="form-control" name="word" type="search" placeholder="Ara..." aria-label="Ara">
+                <button class="btn btn-outline-success" type="submit">Bul</button>*@
+            </div>
+             <button class="btn btn-success" type="submit">Bul</button>
+        </form>
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Öğrenci Oluştur", "Create", null,null, new { @class = "btn btn-info" })
+</p>
+<table class="table table-striped table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Students.ID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Students.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Students.Surname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Students.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Students.Adress)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.sList)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Surname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Adress)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=@item.ID }, new { @class = "btn btn-warning" }) |
+                @Html.ActionLink("Details", "Details", new { id=@item.ID }, new { @class = "btn btn-info" }) |
+                @Html.ActionLink("Delete", "Delete", new { id=@item.ID }, new { @class = "btn btn-danger" })
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
