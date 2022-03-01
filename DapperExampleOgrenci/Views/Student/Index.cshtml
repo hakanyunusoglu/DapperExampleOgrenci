@@ -6,24 +6,24 @@
 
 <h1>Öğrenci Listesi</h1>
 
-<div class="card col-6">
+<div class="card">
     <div class="card-body">
         <form asp-controller="Student" asp-action="Index">
-            <div class="form-group col-6">
+            <div class="form-group col-4">
                 <label asp-for="Students.Name" class="control-label"></label>
                 <select class="form-control" asp-for="Students.Name" asp-items="@(new SelectList(Model.ddListName,"Name","Name"))">
                     <option value="0">--- İsim Seçiniz ---</option>
                 </select>
                 <span asp-validation-for="Students.Name" class="text-danger"></span>
             </div>
-             <div class="form-group col-6">
+             <div class="form-group col-4">
                 <label asp-for="Students.Surname" class="control-label"></label>
                 <select class="form-control" asp-for="Students.Surname" asp-items="@(new SelectList(Model.ddListSurname,"Surname","Surname"))">
                     <option value="0">--- Soyisim Seçiniz ---</option>
                 </select>
                 <span asp-validation-for="Students.Surname" class="text-danger"></span>
             </div>
-            <div class="form-group col-6">
+            <div class="form-group col-4">
                 <label asp-for="Students.Email" class="control-label"></label>
                 <select class="form-control" asp-for="Students.Email" asp-items="@(new SelectList(Model.ddListEmail,"Email","Email"))">
                     <option value="0">--- Email Seçiniz ---</option>
@@ -38,6 +38,7 @@
         </form>
     </div>
 </div>
+<hr />
 <p>
     @Html.ActionLink("Öğrenci Oluştur", "Create", null,null, new { @class = "btn btn-info" })
 </p>
