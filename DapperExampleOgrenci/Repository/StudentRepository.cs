@@ -24,6 +24,30 @@ namespace DapperExampleOgrenci.Repository
             return std;
         }
 
+        public List<Student> ddsListName(StudentVM std)
+        {
+            var sqlName = "SELECT DISTINCT Name FROM Student";
+
+            std.ddListName = db.Query<Student>(sqlName).ToList();
+
+            return std.ddListName;
+        }
+        public List<Student> ddsListSurname(StudentVM std)
+        {
+            var sqlSurname = "SELECT DISTINCT Surname FROM Student";
+            std.ddListSurname = db.Query<Student>(sqlSurname).ToList();
+
+            return std.ddListSurname;
+        }
+        public List<Student> ddsListEmail(StudentVM std)
+        {
+
+            var sqlEmail = "SELECT DISTINCT Email FROM Student";
+            std.ddListEmail = db.Query<Student>(sqlEmail).ToList();
+
+            return std.ddListEmail;
+        }
+
         public void Delete(int id)
         {
             var sql = "DELETE FROM Student WHERE ID=@id";
@@ -39,7 +63,7 @@ namespace DapperExampleOgrenci.Repository
         public List<Student> GetAll(StudentVM model)
         {
             var sql = "";
-            if (model.Students == null)
+            if (model.Students == null || (model.Students.Name == "0" && model.Students.Surname == "0" && model.Students.Email == "0"))
             {
                 sql = "SELECT * FROM Student";
             }

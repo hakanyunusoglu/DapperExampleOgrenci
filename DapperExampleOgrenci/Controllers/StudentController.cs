@@ -17,7 +17,10 @@ namespace DapperExampleOgrenci.Controllers
         {
            
                 svm.sList = repo.GetAll(model);
-            
+                svm.ddListName = repo.ddsListName(model);
+            svm.ddListSurname = repo.ddsListSurname(model);
+            svm.ddListEmail = repo.ddsListEmail(model);
+
             return View(svm);
         }
 
